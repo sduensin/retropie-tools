@@ -23,7 +23,7 @@ wget https://github.com/munt/munt/archive/munt_2_2_0.tar.gz
 tar -xzf munt_2_2_0.tar.gz
 rm munt_2_2_0.tar.gz
 
-cd munt_2_2_0
+cd munt-munt_2_2_0
 mkdir build
 cd build
 export CCFLAGS="-Ofast -mcpu=cortex-a53"
