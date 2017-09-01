@@ -1,0 +1,29 @@
+install-munt  -  A tool to install Roland MT32 emulation in RetroPie
+
+Copyright 2017 Scott Duensing <scott@duensing.com>
+
+This work is free. You can redistribute it and/or modify it under the
+terms of the Do What The Fuck You Want To Public License, Version 2,
+as published by Sam Hocevar. See the COPYING file or visit 
+http://www.wtfpl.net/ for more details.
+
+Release notes are contained in the script itself.
+
+
+What It Does
+
+This script downloads, compiles, installs, and configures munt.  In
+addition, it also updates the default DOSBox configuration to support Roland
+MT32 music playback.
+
+
+Running
+
+Just execute the script and hope for the best.  :-)
+
+
+Gotchas
+
+This script wasn't designed to be run over and over and over again.  It
+works for me.  If it blows up, you may need to do some manual cleanup before
+trying it again.

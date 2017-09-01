@@ -1,0 +1,76 @@
+import-eXoDOS  -  A tool to import eXoDOS game collections into RetroPie
+
+Copyright 2017 Scott Duensing <scott@duensing.com>
+
+This work is free. You can redistribute it and/or modify it under the
+terms of the Do What The Fuck You Want To Public License, Version 2,
+as published by Sam Hocevar. See the COPYING file or visit 
+http://www.wtfpl.net/ for more details.
+
+Release notes are contained in the script itself.
+
+
+What It Does
+
+This script will clean up a freshly unpacked eXoDOS collection and make it
+run under DOSBox on a RetroPie installation.  It adds all available metadata
+to the EmulationStation menus.  It also does its very best to not touch
+anything it doesn't absolutely have to mess with.  You can safely run this
+script on your collection as many times as you like as long as you follow
+the gotchas below.
+
+
+Setup
+
+Unpack your eXoDOS collection anywhere you like.  You can safely unpack 
+multiple collections into the same place to add them all.  The original
+eXoDOS launcher, Meagre, keeps all the metadata it needs to run each game in
+a folder matching the game folders name under the "!dos" directory.  So, for
+example, "Alone in the Dark" on my system has the following tree:
+
+  /home/pi/RetroPie/roms/eXoDOS/adark1
+  /home/pi/RetroPie/roms/eXoDOS/adark1/cd
+  /home/pi/RetroPie/roms/eXoDOS/!dos/adark1
+  /home/pi/RetroPie/roms/eXoDOS/!dos/adark1/Meagre
+  /home/pi/RetroPie/roms/eXoDOS/!dos/adark1/Meagre/...
+
+This is the required directory layout for this script.  Don't change it. 
+Just unpack the collections and everything should be fine.
+
+
+Running
+
+To run the script, first make it executable and then run it against your
+collection folder:
+
+  chmod +x import-eXoDOS.sh
+  ./import-eXoDOS.sh /home/pi/RetroPie/roms/eXoDOS
+
+The script will process the collection, generate ES metadata, and create
+launcher scripts for DOSBox.  The only RetroPie related files it will modify
+are the startup scripts for each game in the roms/pc folder and the
+gamelist.xml for the PC.
+
+
+Gotchas
+
+NOTE!  This script DOES alter the files in the unpacked eXoDOS collection! 
+It will uppercase everything, create new AUTOEXEC.BAT files, remove extra
+configuration files, etc.  If you wish to retain a clean copy of the eXoDOS
+collection, keep your archived copy!
+
+WARNING!  If you have manually added DOS games to your system already,
+running this script WILL clobber your existing metadata!  Back up your
+/home/pi/.emulationstation/gamelists/pc directory and manually merge the
+new and your backed up XML files once it is complete.
+
+If you need to modify the AUTOEXEC.BAT of any of the games in your
+collection to make them run (several are broken in eXoDOS), DO NOT modify
+the AUTOEXEC.BAT file in the actual game folder!  Instead, find the
+DOSBOX.CONF file for the game under the EXODOS/!DOS folder and modify it. 
+That way, when you re-run this script, your changes will be applied and not
+clobbered when the AUTOEXEC.BAT is updated.  When you apply fixes, pretend
+you're fixing the original Meager front end installation.  Do not remove
+things like the first two "CD .." statements that Meager requires.
+
+If you don't know what eXoDOS is or don't have a copy, don't ask me for it.
