@@ -66,7 +66,7 @@ if [[ ! -d "${DOSGAMES}/!dos" && ! -d "${DOSGAMES}/!DOS" ]]; then
 fi
 
 # ----- Start new gamelist.xml
-GAMELIST=/home/pi/.emulationstation/gamelists/pc/gamelist.xml
+GAMELIST=~/.emulationstation/gamelists/pc/gamelist.xml
 if [[ -e "${GAMELIST}" ]]; then
 	cp -f "${GAMELIST}" "${GAMELIST}.bak"
 fi
@@ -173,7 +173,7 @@ for DIR in "${DIRLIST[@]}"; do
 				echo -e "\t</game>" >> "${GAMELIST}"
 				
 				# ----- Create script for RetroPie
-				SCRIPT="/home/pi/RetroPie/roms/pc/${GAME,,}.sh"
+				SCRIPT="~/RetroPie/roms/pc/${GAME,,}.sh"
 				echo "#!/bin/bash" > "${SCRIPT}"
 				echo "/opt/retropie/emulators/dosbox/bin/dosbox -conf /opt/retropie/configs/pc/dosbox-SVN.conf -conf ${AUTOEXEC} -exit" >> "${SCRIPT}"
 				chmod a+x "${SCRIPT}"
